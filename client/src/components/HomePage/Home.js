@@ -1,12 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { GlobalStyles, Container } from './styles.js';
+import CategoryDiv from './CategoryDiv.js';
+import MusicContainer from './MusicContainer.js';
+import Recommend from './Recommend.js';
+import Info from './Info.js';
 import axios from 'axios';
 import querystring from 'querystring';
 import config from '/config.env.js';
 
 const redirect_uri = 'http://localhost:4000/home';
-var TOKEN;
+var CODE;
 
 const Home = () => {
+  const [category, setCategory] = useState('discoverWeekly');
+  const [token, setToken] = useState('');
 
   const handleRedirect = () => {
     let code = getCode();
@@ -14,13 +21,12 @@ const Home = () => {
     window.history.pushState('','', redirect_uri)
   }
   const getCode = () => {
-    let code = null;
     const queryString = window.location.search;
     if (queryString.length > 0) {
       const urlParams = new URLSearchParams(queryString);
-      code = urlParams.get('code')
+      CODE = urlParams.get('code')
     }
-    return code;
+    return CODE;
   };
 
   const getToken = (code) => {
@@ -40,7 +46,7 @@ const Home = () => {
         client_secret: config.CLIENT_SECRET
       })
     })
-      .then(result => TOKEN = result.data.access_token)
+      .then(result => setToken(result.data.access_token))
       .catch(err => {throw err});
   }
 
@@ -48,7 +54,15 @@ const Home = () => {
     handleRedirect();
   })
   return (
-    <h1>Hello world</h1>
+    <div>
+      <GlobalStyles />
+      <Container>
+        <CategoryDiv setCategory={setCategory} />
+        <MusicContainer token={token} category={category} />
+        <Recommend token={token} category={category} />
+        <Info token={token} category={category} />
+      </Container>
+    </div>
   )
 }
 

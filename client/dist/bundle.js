@@ -2583,10 +2583,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./client/src/components/App.js":
-/*!**************************************!*\
-  !*** ./client/src/components/App.js ***!
-  \**************************************/
+/***/ "./client/src/components/HomePage/Category.js":
+/*!****************************************************!*\
+  !*** ./client/src/components/HomePage/Category.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2595,8 +2595,303 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/styles.js");
-/* harmony import */ var _Login_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login.js */ "./client/src/components/Login.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/HomePage/styles.js");
+
+
+
+var Category = function Category(_ref) {
+  var category = _ref.category;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Button, null, category);
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Category);
+
+/***/ }),
+
+/***/ "./client/src/components/HomePage/CategoryDiv.js":
+/*!*******************************************************!*\
+  !*** ./client/src/components/HomePage/CategoryDiv.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _Category_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Category.js */ "./client/src/components/HomePage/Category.js");
+
+
+
+var CategoryDiv = function CategoryDiv() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "categoryDiv"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
+    category: "Genre"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
+    category: "Chart"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
+    category: "Discover Weekly"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
+    category: "New Release"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
+    category: "Random Artist"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
+    category: "Random Playlist"
+  }));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CategoryDiv);
+
+/***/ }),
+
+/***/ "./client/src/components/HomePage/Home.js":
+/*!************************************************!*\
+  !*** ./client/src/components/HomePage/Home.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/HomePage/styles.js");
+/* harmony import */ var _CategoryDiv_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategoryDiv.js */ "./client/src/components/HomePage/CategoryDiv.js");
+/* harmony import */ var _MusicContainer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MusicContainer.js */ "./client/src/components/HomePage/MusicContainer.js");
+/* harmony import */ var _Recommend_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Recommend.js */ "./client/src/components/HomePage/Recommend.js");
+/* harmony import */ var _Info_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Info.js */ "./client/src/components/HomePage/Info.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! querystring */ "./node_modules/querystring/index.js");
+/* harmony import */ var _config_env_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../config.env.js */ "./config.env.js");
+/* harmony import */ var _config_env_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_config_env_js__WEBPACK_IMPORTED_MODULE_8__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+var redirect_uri = 'http://localhost:4000/home';
+var CODE;
+
+var Home = function Home() {
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('discoverWeekly'),
+      _useState2 = _slicedToArray(_useState, 2),
+      category = _useState2[0],
+      setCategory = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      token = _useState4[0],
+      setToken = _useState4[1];
+
+  var handleRedirect = function handleRedirect() {
+    var code = getCode();
+    getToken(code);
+    window.history.pushState('', '', redirect_uri);
+  };
+
+  var getCode = function getCode() {
+    var queryString = window.location.search;
+
+    if (queryString.length > 0) {
+      var urlParams = new URLSearchParams(queryString);
+      CODE = urlParams.get('code');
+    }
+
+    return CODE;
+  };
+
+  var getToken = function getToken(code) {
+    var url = "https://accounts.spotify.com/api/token";
+    axios__WEBPACK_IMPORTED_MODULE_6___default()({
+      method: 'post',
+      url: url,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: 'Basic ' + btoa("".concat((_config_env_js__WEBPACK_IMPORTED_MODULE_8___default().CLIENT_ID), ":").concat((_config_env_js__WEBPACK_IMPORTED_MODULE_8___default().CLIENT_SECRET)))
+      },
+      data: querystring__WEBPACK_IMPORTED_MODULE_7__.stringify({
+        grant_type: "authorization_code",
+        code: code,
+        redirect_uri: encodeURI(redirect_uri),
+        client_id: (_config_env_js__WEBPACK_IMPORTED_MODULE_8___default().CLIENT_ID),
+        client_secret: (_config_env_js__WEBPACK_IMPORTED_MODULE_8___default().CLIENT_SECRET)
+      })
+    }).then(function (result) {
+      return setToken(result.data.access_token);
+    })["catch"](function (err) {
+      throw err;
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    handleRedirect();
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.GlobalStyles, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CategoryDiv_js__WEBPACK_IMPORTED_MODULE_2__.default, {
+    setCategory: setCategory
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MusicContainer_js__WEBPACK_IMPORTED_MODULE_3__.default, {
+    token: token,
+    category: category
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Recommend_js__WEBPACK_IMPORTED_MODULE_4__.default, {
+    token: token,
+    category: category
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Info_js__WEBPACK_IMPORTED_MODULE_5__.default, {
+    token: token,
+    category: category
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
+
+/***/ }),
+
+/***/ "./client/src/components/HomePage/Info.js":
+/*!************************************************!*\
+  !*** ./client/src/components/HomePage/Info.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var Info = function Info() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "info"
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Info);
+
+/***/ }),
+
+/***/ "./client/src/components/HomePage/MusicContainer.js":
+/*!**********************************************************!*\
+  !*** ./client/src/components/HomePage/MusicContainer.js ***!
+  \**********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+
+var MusicContainer = function MusicContainer() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "musicContainer"
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MusicContainer);
+
+/***/ }),
+
+/***/ "./client/src/components/HomePage/Recommend.js":
+/*!*****************************************************!*\
+  !*** ./client/src/components/HomePage/Recommend.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+
+
+var newRelease = 'https://api.spotify.com/v1/browse/new-releases';
+var randomPlaylist = 'https://api.spotify.com/v1/browse/featured-playlists';
+var genre = 'https://api.spotify.com/v1/recommendations/available-genre-seeds';
+
+var Recommend = function Recommend(_ref) {
+  var token = _ref.token,
+      category = _ref.category;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    id: "recommend"
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Recommend);
+
+/***/ }),
+
+/***/ "./client/src/components/HomePage/styles.js":
+/*!**************************************************!*\
+  !*** ./client/src/components/HomePage/styles.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "GlobalStyles": () => (/* binding */ GlobalStyles),
+/* harmony export */   "Banner": () => (/* binding */ Banner),
+/* harmony export */   "Container": () => (/* binding */ Container),
+/* harmony export */   "Button": () => (/* binding */ Button)
+/* harmony export */ });
+/* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
+/* harmony import */ var _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../ui/colors.js */ "./ui/colors.js");
+var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+
+function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
+
+
+
+var GlobalStyles = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  *,\n  *::before,\n  *::after {\n      margin: 0;\n      padding: 0;\n      box-sizing: inherit;\n  }\n  html {\n      box-sizing: border-box;\n      font-size: 62.5%;\n  }\n  body {\n      font-family: \"Noto Sans JP\";\n      background-color: ", ";\n      color: white;\n      font-weight: 400;\n      line-height: 1.6;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet);
+var Banner = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n\n"])));
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  max-width: 1400px;\n  width: 80%;\n  height: 100%;\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  grid-template-rows: 10rem 5rem repeat(2, 20rem) auto;\n  grid-gap: 1rem;\n  margin: auto;\n\n  #categoryDiv {\n    grid-column: span 6;\n    grid-row: 2 / 3;\n    display: flex;\n    justify-content: space-around;\n    align-items: flex-start;\n    border-radius: 1rem;\n  }\n\n  #musicContainer {\n    grid-column: 1 / 3;\n    grid-row: 3 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n  }\n\n  #recommend {\n    grid-column: 3 / 7;\n    grid-row: 3 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n  }\n\n  #info {\n    grid-column: span 6;\n    grid-row: 5 / 6;\n    background-color: ", ";\n    border-radius: 1rem;\n    height: 10rem;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink); // export const ButtonDiv = styled.div`
+//   display: flex;
+//   grid-column: span 6;
+//   grid-row: 2 / 3;
+// `;
+
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: 12rem;\n  height: 3rem;\n  color: white;\n  font-size: 1.1rem;\n  background-color: ", ";\n  border: none;\n  color: ", ";\n  font-weight:700;\n  border-radius: 1rem;\n  : focus{\n    outline: none;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Melon, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet);
+
+/***/ }),
+
+/***/ "./client/src/components/LoginPage/App.js":
+/*!************************************************!*\
+  !*** ./client/src/components/LoginPage/App.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles.js */ "./client/src/components/styles.js");
+/* harmony import */ var _Login_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login.js */ "./client/src/components/LoginPage/Login.js");
 
 
 
@@ -2609,10 +2904,10 @@ var App = function App() {
 
 /***/ }),
 
-/***/ "./client/src/components/Home.js":
-/*!***************************************!*\
-  !*** ./client/src/components/Home.js ***!
-  \***************************************/
+/***/ "./client/src/components/LoginPage/Login.js":
+/*!**************************************************!*\
+  !*** ./client/src/components/LoginPage/Login.js ***!
+  \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2621,83 +2916,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! querystring */ "./node_modules/querystring/index.js");
-/* harmony import */ var _config_env_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../config.env.js */ "./config.env.js");
-/* harmony import */ var _config_env_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_config_env_js__WEBPACK_IMPORTED_MODULE_3__);
-
-
-
-
-var redirect_uri = 'http://localhost:4000/home';
-var TOKEN;
-
-var Home = function Home() {
-  var handleRedirect = function handleRedirect() {
-    var code = getCode();
-    getToken(code);
-    window.history.pushState('', '', redirect_uri);
-  };
-
-  var getCode = function getCode() {
-    var code = null;
-    var queryString = window.location.search;
-
-    if (queryString.length > 0) {
-      var urlParams = new URLSearchParams(queryString);
-      code = urlParams.get('code');
-    }
-
-    return code;
-  };
-
-  var getToken = function getToken(code) {
-    var url = "https://accounts.spotify.com/api/token";
-    axios__WEBPACK_IMPORTED_MODULE_1___default()({
-      method: 'post',
-      url: url,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: 'Basic ' + btoa("".concat((_config_env_js__WEBPACK_IMPORTED_MODULE_3___default().CLIENT_ID), ":").concat((_config_env_js__WEBPACK_IMPORTED_MODULE_3___default().CLIENT_SECRET)))
-      },
-      data: querystring__WEBPACK_IMPORTED_MODULE_2__.stringify({
-        grant_type: "authorization_code",
-        code: code,
-        redirect_uri: encodeURI(redirect_uri),
-        client_id: (_config_env_js__WEBPACK_IMPORTED_MODULE_3___default().CLIENT_ID),
-        client_secret: (_config_env_js__WEBPACK_IMPORTED_MODULE_3___default().CLIENT_SECRET)
-      })
-    }).then(function (result) {
-      return TOKEN = result.data.access_token;
-    })["catch"](function (err) {
-      throw err;
-    });
-  };
-
-  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    handleRedirect();
-  });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "Hello world");
-};
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
-
-/***/ }),
-
-/***/ "./client/src/components/Login.js":
-/*!****************************************!*\
-  !*** ./client/src/components/Login.js ***!
-  \****************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/styles.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles.js */ "./client/src/components/styles.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 
@@ -2706,23 +2925,12 @@ __webpack_require__.r(__webpack_exports__);
 
 var Login = function Login(_ref) {
   var signIn = _ref.signIn;
-  // const login = () => {
-  //   axios({
-  //     method: 'get',
-  //     url:'/login'
-  //   })
-  //     .then(result=>console.log(result))
-  //     .catch(err=> console.log(err))
-  // }
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Header, null, "Welcome to Discover !"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Paragraph, null, "Dicover new music everyday,", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), " powered by Spotify"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "http://localhost:4000/login"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Button, null, "LOG IN WITH SPOTIFY")));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
-{
-  /* <a href='http://localhost:4000/login'></a> */
-}
 
 /***/ }),
 
@@ -33297,13 +33505,13 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var _components_App_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/App.js */ "./client/src/components/App.js");
-/* harmony import */ var _components_Home_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Home.js */ "./client/src/components/Home.js");
+/* harmony import */ var _components_LoginPage_App_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/LoginPage/App.js */ "./client/src/components/LoginPage/App.js");
+/* harmony import */ var _components_HomePage_Home_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/HomePage/Home.js */ "./client/src/components/HomePage/Home.js");
 
 
 
 
-react_dom__WEBPACK_IMPORTED_MODULE_1__.render(window.location.pathname === '/home' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_Home_js__WEBPACK_IMPORTED_MODULE_3__.default, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_App_js__WEBPACK_IMPORTED_MODULE_2__.default, null), document.getElementById('app')); // window.location.pathname === '/home' ? <Home/> :
+react_dom__WEBPACK_IMPORTED_MODULE_1__.render(window.location.pathname === '/home' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_HomePage_Home_js__WEBPACK_IMPORTED_MODULE_3__.default, null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_LoginPage_App_js__WEBPACK_IMPORTED_MODULE_2__.default, null), document.getElementById('app'));
 })();
 
 /******/ })()

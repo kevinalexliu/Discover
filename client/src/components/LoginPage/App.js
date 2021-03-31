@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GlobalStyles } from './styles.js'
+import { GlobalStyles } from '../styles.js'
 import Login from './Login.js';
 
 

@@ -28,9 +28,9 @@ app.use(static)
 
 app.use('/login', authorizationRouter);
 
-app.use('/home', (req, res) => {
-  console.log('test')
-})
+// app.use('/home', (req, res) => {
+//   console.log('test')
+// })
 
 
 

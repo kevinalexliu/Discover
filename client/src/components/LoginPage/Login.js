@@ -1,17 +1,8 @@
 import React from 'react';
-import { Container, Header, Paragraph, Button } from './styles.js';
+import { Container, Header, Paragraph, Button } from '../styles.js';
 import axios from 'axios';
 
 const Login = ({signIn}) => {
-
-  // const login = () => {
-  //   axios({
-  //     method: 'get',
-  //     url:'/login'
-  //   })
-  //     .then(result=>console.log(result))
-  //     .catch(err=> console.log(err))
-  // }
 
   return (
     <Container>
@@ -23,5 +14,3 @@ const Login = ({signIn}) => {
 }
 
 export default Login;
-
-{/* <a href='http://localhost:4000/login'></a> */}
