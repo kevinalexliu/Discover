@@ -22,7 +22,7 @@ const NewRelease = ({token}) => {
   }
 
   useEffect(() => {
-    if (data.length === 0) {
+    if (data.length === 0 && token) {
       getMusic();
     }
   })

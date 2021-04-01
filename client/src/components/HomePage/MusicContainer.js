@@ -1,16 +1,31 @@
 import React from 'react';
-import { Thumbnail } from './styles.js';
+import { BigThumbnail } from './styles.js';
+import { Header } from '../styles.js';
+import { Jet } from '../../../../ui/colors.js';
 
-const MusicContainer = ({thumbnail, info}) => {
+const MusicContainer = ({track, info}) => {
   return (
     <div id='musicContainer'>
-      <div className='thumbnail'>
-        <Thumbnail
-          width={3}
-          height={3}
-          // src={}
+        <BigThumbnail
+          className='image'
+          width={28}
+          height={28}
+          src={track.image}
         />
-      </div>
+        <div className='track'>
+          <Header
+            color={Jet}
+            size={1.5}
+          >
+            {track.track}
+          </Header>
+          <Header
+            color={Jet}
+            size={1.2}
+          >
+            {track.artist}
+          </Header>
+        </div>
     </div>
   )
 };

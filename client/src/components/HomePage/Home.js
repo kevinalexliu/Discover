@@ -16,6 +16,7 @@ const Home = () => {
   const [category, setCategory] = useState('newRelease');
   const [token, setToken] = useState('');
   const [id, setId] = useState('');
+  const [track, setTrack] = useState();
 
   const handleRedirect = () => {
     let code = getCode();
@@ -63,9 +64,9 @@ const Home = () => {
         <GlobalStyles />
         <Container>
           <CategoryDiv setCategory={setCategory} />
-          <MusicContainer token={token} category={category} />
+          {track ? <MusicContainer token={token} track={track} /> : null}
           <Recommend token={token} category={category}/>
-          {id.length> 0 ? <Information token={token} id={id} /> : null}
+          {id.length> 0 ? <Information token={token} id={id} setTrack={setTrack} /> : null}
         </Container>
       </div>
     </Provider>

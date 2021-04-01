@@ -31,40 +31,52 @@ export const Container = styled.div`
   max-width: 1400px;
   min-width: 1000px;
   width: 80%;
-  // height: 100%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: 10rem 5rem repeat(3, auto);
+  grid-template-rows: 10rem 5rem repeat(2, auto);
   grid-gap: 1rem;
   margin: auto;
 
   #categoryDiv {
     grid-column: span 6;
     grid-row: 2 / 3;
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap:1rem;
+    align-items: center;
+    justify-items: center;
     border-radius: 1rem;
   }
 
   #musicContainer {
     grid-column: 1 / 3;
-    grid-row: 3 / 5;
+    grid-row: 3 / 4;
     background-color: ${SilverPink};
     border-radius: 1rem;
     display: grid;
-    grid-template-rows: 2fr 1fr;
+    grid-template-rows: 28rem auto;
+    grid-gap: 2rem;
     padding: 2rem;
+
+    .image {
+      grid-row: 1 / 2;
+      justify-self: center;
+    }
+
+    .track {
+      grid-row: 2 / 3;
+      // justify-self: center;
+    }
   }
 
   #recommend {
     grid-column: 3 / 7;
-    grid-row: 3 / 5;
+    grid-row: 3 / 4;
     background-color: ${SilverPink};
     border-radius: 1rem;
     padding: 2rem;
     display: grid;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 1fr auto;
     grid-gap: 1rem;
 
     .description {
@@ -90,36 +102,34 @@ export const Container = styled.div`
 
   #info {
     grid-column: 3 / 7;
-    grid-row: 5 / 6;
+    grid-row: 4 / 5;
     background-color: ${SilverPink};
     border-radius: 1rem;
     height: 25rem;
     display: grid;
     grid-gap: 1rem;
     grid-template-columns: 14rem 1fr 1fr;
-    grid-template-rows: repeat(2, auto) repeat(2, 1fr);
+    grid-template-rows: auto repeat(2, 1fr);
     padding: 2rem;
 
     .cover {
       grid-column: 1 / 2;
-      grid-row: 1 / 4;
+      grid-row: 1 / 3;
     }
 
     .header {
       grid-column: 2 / 3;
       grid-row: 1 / 2;
-      height: auto;
     }
 
     .description {
       grid-row: 2 / 3;
       grid-column: 2 / 3;
-      align-items: start;
     }
 
     .tracks {
       grid-column: 3 / 4;
-      grid-row: span 4;
+      grid-row: span 3;
       overflow: hidden;
       .track {
         cursor: pointer;

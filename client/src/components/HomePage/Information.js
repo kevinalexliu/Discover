@@ -4,7 +4,7 @@ import { BigThumbnail, Thumbnail } from './styles.js';
 import { Header, Paragraph } from '../styles.js';
 import { Jet } from '../../../../ui/colors.js';
 
-const Information = ({token, id}) => {
+const Information = ({token, id, setTrack}) => {
   const [data, setData] = useState({
     artist: [],
     album:'',
@@ -17,6 +17,15 @@ const Information = ({token, id}) => {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(string).toLocaleDateString([], options);
   };
+
+  const playMusic = (e) => {
+    e.preventDefault();
+    setTrack({
+      image: data.image,
+      track: e.target.getAttribute('data-name'),
+      artist: data.artist.join(',')
+    })
+  }
 
   const getAlbum = () => {
     const url = `https://api.spotify.com/v1/albums/${id}`
@@ -59,6 +68,8 @@ const Information = ({token, id}) => {
           {data.tracks.map(track => {
             return (
                 <Paragraph
+                  onClick={playMusic}
+                  data-name={track.name}
                   className='track'
                   size={1.1}
                   color={Jet}

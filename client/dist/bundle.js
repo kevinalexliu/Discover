@@ -2734,6 +2734,11 @@ var Home = function Home() {
       id = _useState6[0],
       setId = _useState6[1];
 
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(),
+      _useState8 = _slicedToArray(_useState7, 2),
+      track = _useState8[0],
+      setTrack = _useState8[1];
+
   var handleRedirect = function handleRedirect() {
     var code = getCode();
     getToken(code);
@@ -2785,15 +2790,16 @@ var Home = function Home() {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.GlobalStyles, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CategoryDiv_js__WEBPACK_IMPORTED_MODULE_2__.default, {
     setCategory: setCategory
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MusicContainer_js__WEBPACK_IMPORTED_MODULE_3__.default, {
+  }), track ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MusicContainer_js__WEBPACK_IMPORTED_MODULE_3__.default, {
     token: token,
-    category: category
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Recommend_js__WEBPACK_IMPORTED_MODULE_4__.default, {
+    track: track
+  }) : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Recommend_js__WEBPACK_IMPORTED_MODULE_4__.default, {
     token: token,
     category: category
   }), id.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Information_js__WEBPACK_IMPORTED_MODULE_5__.default, {
     token: token,
-    id: id
+    id: id,
+    setTrack: setTrack
   }) : null)));
 };
 
@@ -2838,7 +2844,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var Information = function Information(_ref) {
   var token = _ref.token,
-      id = _ref.id;
+      id = _ref.id,
+      setTrack = _ref.setTrack;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
     artist: [],
@@ -2858,6 +2865,15 @@ var Information = function Information(_ref) {
       day: 'numeric'
     };
     return new Date(string).toLocaleDateString([], options);
+  };
+
+  var playMusic = function playMusic(e) {
+    e.preventDefault();
+    setTrack({
+      image: data.image,
+      track: e.target.getAttribute('data-name'),
+      artist: data.artist.join(',')
+    });
   };
 
   var getAlbum = function getAlbum() {
@@ -2917,6 +2933,8 @@ var Information = function Information(_ref) {
     color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_4__.Jet
   }, "Tracks"), data.tracks.map(function (track) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.Paragraph, {
+      onClick: playMusic,
+      "data-name": track.name,
       className: "track",
       size: 1.1,
       color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_4__.Jet,
@@ -2943,21 +2961,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/HomePage/styles.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../styles.js */ "./client/src/components/styles.js");
+/* harmony import */ var _ui_colors_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../ui/colors.js */ "./ui/colors.js");
+
+
 
 
 
 var MusicContainer = function MusicContainer(_ref) {
-  var thumbnail = _ref.thumbnail,
+  var track = _ref.track,
       info = _ref.info;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "musicContainer"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-    className: "thumbnail"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Thumbnail, {
-    width: 3,
-    height: 3 // src={}
-
-  })));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.BigThumbnail, {
+    className: "image",
+    width: 28,
+    height: 28,
+    src: track.image
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "track"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_2__.Header, {
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_3__.Jet,
+    size: 1.5
+  }, track.track), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_2__.Header, {
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_3__.Jet,
+    size: 1.2
+  }, track.artist)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MusicContainer);
@@ -3029,7 +3058,7 @@ var NewRelease = function NewRelease(_ref) {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    if (data.length === 0) {
+    if (data.length === 0 && token) {
       getMusic();
     }
   });
@@ -3253,7 +3282,7 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var GlobalStyles = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  *,\n  *::before,\n  *::after {\n      margin: 0;\n      padding: 0;\n      box-sizing: inherit;\n  }\n  html {\n      box-sizing: border-box;\n      font-size: 62.5%;\n  }\n  body {\n      font-family: \"Noto Sans JP\";\n      background-color: ", ";\n      color: white;\n      font-weight: 400;\n      line-height: 1.6;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet);
 var Banner = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n\n"])));
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  max-width: 1400px;\n  min-width: 1000px;\n  width: 80%;\n  // height: 100%;\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  grid-template-rows: 10rem 5rem repeat(3, auto);\n  grid-gap: 1rem;\n  margin: auto;\n\n  #categoryDiv {\n    grid-column: span 6;\n    grid-row: 2 / 3;\n    display: flex;\n    justify-content: space-around;\n    align-items: flex-start;\n    border-radius: 1rem;\n  }\n\n  #musicContainer {\n    grid-column: 1 / 3;\n    grid-row: 3 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n    display: grid;\n    grid-template-rows: 2fr 1fr;\n    padding: 2rem;\n  }\n\n  #recommend {\n    grid-column: 3 / 7;\n    grid-row: 3 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n    padding: 2rem;\n    display: grid;\n    grid-template-rows: 1fr 3fr;\n    grid-gap: 1rem;\n\n    .description {\n      display: grid;\n      grid-row: 1 / 2;\n      grid-template-columns: 10rem 1fr;\n      grid-gap: 1rem;\n\n      .thumbnail {\n        grid-column: 1 / 2;\n        grid-row: 1 / 2;\n      }\n      .info {\n        grid-column: 2 / 5;\n        grid-row: 1 / 2;\n      }\n    }\n    .images {\n      grid-row: 2 / 3;\n      height: auto;\n    }\n  }\n\n  #info {\n    grid-column: 3 / 7;\n    grid-row: 5 / 6;\n    background-color: ", ";\n    border-radius: 1rem;\n    height: 25rem;\n    display: grid;\n    grid-gap: 1rem;\n    grid-template-columns: 14rem 1fr 1fr;\n    grid-template-rows: repeat(2, auto) repeat(2, 1fr);\n    padding: 2rem;\n\n    .cover {\n      grid-column: 1 / 2;\n      grid-row: 1 / 4;\n    }\n\n    .header {\n      grid-column: 2 / 3;\n      grid-row: 1 / 2;\n      height: auto;\n    }\n\n    .description {\n      grid-row: 2 / 3;\n      grid-column: 2 / 3;\n      align-items: start;\n    }\n\n    .tracks {\n      grid-column: 3 / 4;\n      grid-row: span 4;\n      overflow: hidden;\n      .track {\n        cursor: pointer;\n        : hover {\n          font-weight: 700;\n        }\n      }\n    }\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink);
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  max-width: 1400px;\n  min-width: 1000px;\n  width: 80%;\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  grid-template-rows: 10rem 5rem repeat(2, auto);\n  grid-gap: 1rem;\n  margin: auto;\n\n  #categoryDiv {\n    grid-column: span 6;\n    grid-row: 2 / 3;\n    display: grid;\n    grid-template-columns: repeat(6, 1fr);\n    grid-gap:1rem;\n    align-items: center;\n    justify-items: center;\n    border-radius: 1rem;\n  }\n\n  #musicContainer {\n    grid-column: 1 / 3;\n    grid-row: 3 / 4;\n    background-color: ", ";\n    border-radius: 1rem;\n    display: grid;\n    grid-template-rows: 28rem auto;\n    grid-gap: 2rem;\n    padding: 2rem;\n\n    .image {\n      grid-row: 1 / 2;\n      justify-self: center;\n    }\n\n    .track {\n      grid-row: 2 / 3;\n      // justify-self: center;\n    }\n  }\n\n  #recommend {\n    grid-column: 3 / 7;\n    grid-row: 3 / 4;\n    background-color: ", ";\n    border-radius: 1rem;\n    padding: 2rem;\n    display: grid;\n    grid-template-rows: 1fr auto;\n    grid-gap: 1rem;\n\n    .description {\n      display: grid;\n      grid-row: 1 / 2;\n      grid-template-columns: 10rem 1fr;\n      grid-gap: 1rem;\n\n      .thumbnail {\n        grid-column: 1 / 2;\n        grid-row: 1 / 2;\n      }\n      .info {\n        grid-column: 2 / 5;\n        grid-row: 1 / 2;\n      }\n    }\n    .images {\n      grid-row: 2 / 3;\n      height: auto;\n    }\n  }\n\n  #info {\n    grid-column: 3 / 7;\n    grid-row: 4 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n    height: 25rem;\n    display: grid;\n    grid-gap: 1rem;\n    grid-template-columns: 14rem 1fr 1fr;\n    grid-template-rows: auto repeat(2, 1fr);\n    padding: 2rem;\n\n    .cover {\n      grid-column: 1 / 2;\n      grid-row: 1 / 3;\n    }\n\n    .header {\n      grid-column: 2 / 3;\n      grid-row: 1 / 2;\n    }\n\n    .description {\n      grid-row: 2 / 3;\n      grid-column: 2 / 3;\n    }\n\n    .tracks {\n      grid-column: 3 / 4;\n      grid-row: span 3;\n      overflow: hidden;\n      .track {\n        cursor: pointer;\n        : hover {\n          font-weight: 700;\n        }\n      }\n    }\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink);
 var Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: 13rem;\n  height: 3rem;\n  color: white;\n  font-size: 1rem;\n  background-color: ", ";\n  border: none;\n  color: ", ";\n  font-weight:700;\n  border-radius: 1rem;\n  : focus{\n    outline: none;\n  }\n  : hover {\n    background-color: ", ";\n    color: white;\n    cursor: pointer;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Melon, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.CeladonBlue);
 var Thumbnail = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.img(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  width: ", "rem;\n  height: ", "rem;\n  border: none;\n  object-fit: cover;\n  cursor: pointer;\n  : hover {\n    transform: scale(1.1);\n  }\n"])), function (props) {
   return props.width;
