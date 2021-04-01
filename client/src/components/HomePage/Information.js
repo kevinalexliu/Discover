@@ -23,7 +23,8 @@ const Information = ({token, id, setTrack}) => {
     setTrack({
       image: data.image,
       track: e.target.getAttribute('data-name'),
-      artist: data.artist.join(',')
+      artist: data.artist.join(','),
+      preview: e.target.getAttribute('data-preview')
     })
   }
 
@@ -70,6 +71,7 @@ const Information = ({token, id, setTrack}) => {
                 <Paragraph
                   onClick={playMusic}
                   data-name={track.name}
+                  data-preview={track.preview_url}
                   className='track'
                   size={1.1}
                   color={Jet}

@@ -55,7 +55,7 @@ export const Container = styled.div`
     border-radius: 1rem;
     display: grid;
     grid-template-rows: 28rem auto;
-    grid-gap: 2rem;
+    grid-gap: 1rem;
     padding: 2rem;
 
     .image {
@@ -65,7 +65,6 @@ export const Container = styled.div`
 
     .track {
       grid-row: 2 / 3;
-      // justify-self: center;
     }
   }
 

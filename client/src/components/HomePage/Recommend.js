@@ -13,25 +13,6 @@ const url = {
 
 
 const Recommend = ({token, category}) => {
-  // const [images, setImages] = useState([]);
-  // const [data, setData] = useState([]);
-
-
-  // const getMusic = () => {
-  //   axios({
-  //     method: 'get',
-  //     url: url[category],
-  //     headers: {
-  //       Authorization: 'Bearer '+ token
-  //     }
-  //   })
-  //     .then(result => setData(result.data))
-  //     .catch(err => console.log(err));
-  // }
-
-  // useEffect(() => {
-  //   getMusic();
-  // }, [category])
 
   return (
     <div id='recommend'>

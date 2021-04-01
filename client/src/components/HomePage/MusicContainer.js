@@ -1,9 +1,25 @@
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { BigThumbnail } from './styles.js';
 import { Header } from '../styles.js';
 import { Jet } from '../../../../ui/colors.js';
 
-const MusicContainer = ({track, info}) => {
+const MusicContainer = ({track}) => {
+  const audioRef = useRef();
+  const [source, setSource] = useState('')
+
+  const updateSong = () => {
+    setSource(track.preview);
+    if(audioRef.current){
+        audioRef.current.pause();
+        audioRef.current.load();
+        audioRef.current.play();
+    }
+  }
+
+  useEffect(() => {
+    updateSong();
+  })
+
   return (
     <div id='musicContainer'>
         <BigThumbnail
@@ -25,6 +41,11 @@ const MusicContainer = ({track, info}) => {
           >
             {track.artist}
           </Header>
+        </div>
+        <div className='audio'>
+        <audio autoPlay ref={audioRef}>
+          <source src={source} type="audio/mpeg"/>
+        </audio>
         </div>
     </div>
   )
