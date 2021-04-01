@@ -3,17 +3,19 @@ import { GlobalStyles, Container } from './styles.js';
 import CategoryDiv from './CategoryDiv.js';
 import MusicContainer from './MusicContainer.js';
 import Recommend from './Recommend.js';
-import Info from './Info.js';
+import Information from './Information.js';
 import axios from 'axios';
 import querystring from 'querystring';
 import config from '/config.env.js';
+import { Provider } from '../IdContext.js';
 
 const redirect_uri = 'http://localhost:4000/home';
 var CODE;
 
 const Home = () => {
-  const [category, setCategory] = useState('discoverWeekly');
+  const [category, setCategory] = useState('newRelease');
   const [token, setToken] = useState('');
+  const [id, setId] = useState('');
 
   const handleRedirect = () => {
     let code = getCode();
@@ -51,18 +53,22 @@ const Home = () => {
   }
 
   useEffect(() =>{
-    handleRedirect();
+    if(!token) {
+      handleRedirect();
+    }
   })
   return (
-    <div>
-      <GlobalStyles />
-      <Container>
-        <CategoryDiv setCategory={setCategory} />
-        <MusicContainer token={token} category={category} />
-        <Recommend token={token} category={category} />
-        <Info token={token} category={category} />
-      </Container>
-    </div>
+    <Provider value={ {setId} }>
+      <div>
+        <GlobalStyles />
+        <Container>
+          <CategoryDiv setCategory={setCategory} />
+          <MusicContainer token={token} category={category} />
+          <Recommend token={token} category={category}/>
+          {id.length> 0 ? <Information token={token} id={id} /> : null}
+        </Container>
+      </div>
+    </Provider>
   )
 }
 

@@ -1,15 +1,17 @@
 import React from 'react';
 import Category from './Category.js';
 
-const CategoryDiv = () => {
+const CategoryDiv = ({setCategory}) => {
+
+
   return (
     <div id='categoryDiv'>
-      <Category category='Genre'/>
-      <Category category='Chart'/>
-      <Category category='Discover Weekly'/>
-      <Category category='New Release'/>
-      <Category category='Random Artist'/>
-      <Category category='Random Playlist'/>
+      <Category setCategory={setCategory}category='Discover Weekly' name='discoverWeekly'/>
+      <Category setCategory={setCategory} category='Recommend' name='recommendMusic' />
+      <Category setCategory={setCategory} category='New Release' name='newRelease' />
+      <Category setCategory={setCategory} category='Recommend Playlist' name='recommendPlaylist' />
+      <Category setCategory={setCategory} category='Genre' name='genre' />
+      <Category setCategory={setCategory} category='Chart' name='chart' />
     </div>
   )
 };

@@ -1,8 +1,17 @@
 import React from 'react';
+import { Thumbnail } from './styles.js';
 
-const MusicContainer = () => {
+const MusicContainer = ({thumbnail, info}) => {
   return (
-    <div id='musicContainer'></div>
+    <div id='musicContainer'>
+      <div className='thumbnail'>
+        <Thumbnail
+          width={3}
+          height={3}
+          // src={}
+        />
+      </div>
+    </div>
   )
 };
 

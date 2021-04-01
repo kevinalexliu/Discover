@@ -37,15 +37,15 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.h1`
-  font-size: 5rem;
-  line-height: 6rem;
+  font-size: ${props => props.size}rem;
   font-weight: 900;
-  color: ${Melon}
+  color: ${props => props.color};
 `;
 
 export const Paragraph = styled.p`
-  margin-top: 1rem;
-  font-size: 1.5rem;
+  font-size: ${props => props.size}rem;
+  color: ${props => props.color};
+  font-weight: ${props => props.weight}
 `;
 
 export const Button = styled.button`

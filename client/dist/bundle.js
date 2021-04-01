@@ -2600,8 +2600,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Category = function Category(_ref) {
-  var category = _ref.category;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Button, null, category);
+  var category = _ref.category,
+      name = _ref.name,
+      setCategory = _ref.setCategory;
+
+  var select = function select(e) {
+    e.preventDefault();
+    setCategory(e.target.name);
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    name: name,
+    onClick: select
+  }, category);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Category);
@@ -2624,21 +2635,34 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var CategoryDiv = function CategoryDiv() {
+var CategoryDiv = function CategoryDiv(_ref) {
+  var setCategory = _ref.setCategory;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "categoryDiv"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
-    category: "Genre"
+    setCategory: setCategory,
+    category: "Discover Weekly",
+    name: "discoverWeekly"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
-    category: "Chart"
+    setCategory: setCategory,
+    category: "Recommend",
+    name: "recommendMusic"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
-    category: "Discover Weekly"
+    setCategory: setCategory,
+    category: "New Release",
+    name: "newRelease"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
-    category: "New Release"
+    setCategory: setCategory,
+    category: "Recommend Playlist",
+    name: "recommendPlaylist"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
-    category: "Random Artist"
+    setCategory: setCategory,
+    category: "Genre",
+    name: "genre"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Category_js__WEBPACK_IMPORTED_MODULE_1__.default, {
-    category: "Random Playlist"
+    setCategory: setCategory,
+    category: "Chart",
+    name: "chart"
   }));
 };
 
@@ -2662,12 +2686,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CategoryDiv_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CategoryDiv.js */ "./client/src/components/HomePage/CategoryDiv.js");
 /* harmony import */ var _MusicContainer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./MusicContainer.js */ "./client/src/components/HomePage/MusicContainer.js");
 /* harmony import */ var _Recommend_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Recommend.js */ "./client/src/components/HomePage/Recommend.js");
-/* harmony import */ var _Info_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Info.js */ "./client/src/components/HomePage/Info.js");
+/* harmony import */ var _Information_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Information.js */ "./client/src/components/HomePage/Information.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var querystring__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! querystring */ "./node_modules/querystring/index.js");
 /* harmony import */ var _config_env_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../config.env.js */ "./config.env.js");
 /* harmony import */ var _config_env_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_config_env_js__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _IdContext_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../IdContext.js */ "./client/src/components/IdContext.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2689,11 +2714,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var redirect_uri = 'http://localhost:4000/home';
 var CODE;
 
 var Home = function Home() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('discoverWeekly'),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('newRelease'),
       _useState2 = _slicedToArray(_useState, 2),
       category = _useState2[0],
       setCategory = _useState2[1];
@@ -2702,6 +2728,11 @@ var Home = function Home() {
       _useState4 = _slicedToArray(_useState3, 2),
       token = _useState4[0],
       setToken = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      id = _useState6[0],
+      setId = _useState6[1];
 
   var handleRedirect = function handleRedirect() {
     var code = getCode();
@@ -2744,9 +2775,15 @@ var Home = function Home() {
   };
 
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
-    handleRedirect();
+    if (!token) {
+      handleRedirect();
+    }
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.GlobalStyles, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CategoryDiv_js__WEBPACK_IMPORTED_MODULE_2__.default, {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_IdContext_js__WEBPACK_IMPORTED_MODULE_9__.Provider, {
+    value: {
+      setId: setId
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.GlobalStyles, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CategoryDiv_js__WEBPACK_IMPORTED_MODULE_2__.default, {
     setCategory: setCategory
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MusicContainer_js__WEBPACK_IMPORTED_MODULE_3__.default, {
     token: token,
@@ -2754,20 +2791,20 @@ var Home = function Home() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Recommend_js__WEBPACK_IMPORTED_MODULE_4__.default, {
     token: token,
     category: category
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Info_js__WEBPACK_IMPORTED_MODULE_5__.default, {
+  }), id.length > 0 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Information_js__WEBPACK_IMPORTED_MODULE_5__.default, {
     token: token,
-    category: category
-  })));
+    id: id
+  }) : null)));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
 /***/ }),
 
-/***/ "./client/src/components/HomePage/Info.js":
-/*!************************************************!*\
-  !*** ./client/src/components/HomePage/Info.js ***!
-  \************************************************/
+/***/ "./client/src/components/HomePage/Information.js":
+/*!*******************************************************!*\
+  !*** ./client/src/components/HomePage/Information.js ***!
+  \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -2776,15 +2813,120 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/HomePage/styles.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../styles.js */ "./client/src/components/styles.js");
+/* harmony import */ var _ui_colors_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../ui/colors.js */ "./ui/colors.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
-var Info = function Info() {
+
+
+
+
+
+var Information = function Information(_ref) {
+  var token = _ref.token,
+      id = _ref.id;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    artist: [],
+    album: '',
+    tracks: [],
+    releaseDate: '',
+    image: ''
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var formatDate = function formatDate(string) {
+    var options = {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    };
+    return new Date(string).toLocaleDateString([], options);
+  };
+
+  var getAlbum = function getAlbum() {
+    var url = "https://api.spotify.com/v1/albums/".concat(id);
+    axios__WEBPACK_IMPORTED_MODULE_1___default()({
+      method: 'get',
+      url: url,
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }).then(function (result) {
+      var info = result.data;
+      setData({
+        artist: info.artists.map(function (artist) {
+          return artist.name;
+        }),
+        album: info.name,
+        releaseDate: formatDate(info.release_date),
+        image: info.images[0].url,
+        tracks: info.tracks.items
+      });
+    })["catch"](function (err) {
+      throw err;
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (id.length > 1) {
+      getAlbum();
+    }
+  }, [id]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "info"
-  });
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_2__.BigThumbnail, {
+    className: "cover",
+    width: 14,
+    height: 14,
+    src: data.image
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.Header, {
+    className: "header",
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_4__.Jet,
+    size: 1.5
+  }, data.album), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.Paragraph, {
+    size: 1.1,
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_4__.Jet,
+    weight: 700
+  }, "Released ", data.releaseDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.Paragraph, {
+    size: 1.1,
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_4__.Jet,
+    weight: 700
+  }, "Album by ", data.artist.join(','))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "tracks"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.Header, {
+    size: 1.1,
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_4__.Jet
+  }, "Tracks"), data.tracks.map(function (track) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.Paragraph, {
+      className: "track",
+      size: 1.1,
+      color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_4__.Jet,
+      weight: 400,
+      key: track.id
+    }, track.name);
+  })));
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Info);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Information);
 
 /***/ }),
 
@@ -2800,15 +2942,130 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/HomePage/styles.js");
 
 
-var MusicContainer = function MusicContainer() {
+
+var MusicContainer = function MusicContainer(_ref) {
+  var thumbnail = _ref.thumbnail,
+      info = _ref.info;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "musicContainer"
-  });
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "thumbnail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Thumbnail, {
+    width: 3,
+    height: 3 // src={}
+
+  })));
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (MusicContainer);
+
+/***/ }),
+
+/***/ "./client/src/components/HomePage/NewRelease.js":
+/*!******************************************************!*\
+  !*** ./client/src/components/HomePage/NewRelease.js ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ui_colors_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../ui/colors.js */ "./ui/colors.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/HomePage/styles.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles.js */ "./client/src/components/styles.js");
+/* harmony import */ var _IdContext_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../IdContext.js */ "./client/src/components/IdContext.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+var NewRelease = function NewRelease(_ref) {
+  var token = _ref.token;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_IdContext_js__WEBPACK_IMPORTED_MODULE_5__.IdContext),
+      setId = _useContext.setId;
+
+  var url = 'https://api.spotify.com/v1/browse/new-releases';
+
+  var getMusic = function getMusic() {
+    axios__WEBPACK_IMPORTED_MODULE_1___default()({
+      method: 'get',
+      url: url,
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }).then(function (result) {
+      return setData(result.data.albums.items);
+    })["catch"](function (err) {
+      throw err;
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (data.length === 0) {
+      getMusic();
+    }
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "thumbnail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.BigThumbnail, {
+    width: 10,
+    heigth: 10,
+    src: data.length > 0 ? data[0].images[0].url : null
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_4__.Header, {
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_2__.Jet,
+    size: 2.5
+  }, "New Release"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_4__.Paragraph, {
+    size: 1.1,
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_2__.Jet,
+    weight: 700
+  }, "Catch all the latest music from top artists", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Update every week"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "images"
+  }, data.map(function (album) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.Thumbnail, {
+      onClick: function onClick() {
+        return setId(album.id);
+      },
+      width: 6.9,
+      height: 6.9,
+      src: album.images[0].url,
+      key: album.id
+    });
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (NewRelease);
 
 /***/ }),
 
@@ -2826,21 +3083,147 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/HomePage/styles.js");
+/* harmony import */ var _NewRelease_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NewRelease.js */ "./client/src/components/HomePage/NewRelease.js");
+/* harmony import */ var _RecommendPlaylist_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RecommendPlaylist.js */ "./client/src/components/HomePage/RecommendPlaylist.js");
 
 
-var newRelease = 'https://api.spotify.com/v1/browse/new-releases';
-var randomPlaylist = 'https://api.spotify.com/v1/browse/featured-playlists';
-var genre = 'https://api.spotify.com/v1/recommendations/available-genre-seeds';
+
+
+
+var url = {
+  newRelease: 'https://api.spotify.com/v1/browse/new-releases',
+  recommendPlaylist: 'https://api.spotify.com/v1/browse/featured-playlists',
+  genre: 'https://api.spotify.com/v1/recommendations/available-genre-seeds',
+  recommendMusic: 'https://api.spotify.com/v1/recommendations'
+};
 
 var Recommend = function Recommend(_ref) {
   var token = _ref.token,
       category = _ref.category;
+  // const [images, setImages] = useState([]);
+  // const [data, setData] = useState([]);
+  // const getMusic = () => {
+  //   axios({
+  //     method: 'get',
+  //     url: url[category],
+  //     headers: {
+  //       Authorization: 'Bearer '+ token
+  //     }
+  //   })
+  //     .then(result => setData(result.data))
+  //     .catch(err => console.log(err));
+  // }
+  // useEffect(() => {
+  //   getMusic();
+  // }, [category])
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     id: "recommend"
-  });
+  }, category === 'newRelease' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_NewRelease_js__WEBPACK_IMPORTED_MODULE_3__.default, {
+    token: token
+  }) : category === 'recommendPlaylist' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_RecommendPlaylist_js__WEBPACK_IMPORTED_MODULE_4__.default, {
+    token: token
+  }) : null);
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Recommend);
+
+/***/ }),
+
+/***/ "./client/src/components/HomePage/RecommendPlaylist.js":
+/*!*************************************************************!*\
+  !*** ./client/src/components/HomePage/RecommendPlaylist.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _ui_colors_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../ui/colors.js */ "./ui/colors.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./styles.js */ "./client/src/components/HomePage/styles.js");
+/* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../styles.js */ "./client/src/components/styles.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+var RecommendPlaylist = function RecommendPlaylist(_ref) {
+  var token = _ref.token;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      data = _useState2[0],
+      setData = _useState2[1];
+
+  var url = 'https://api.spotify.com/v1/browse/featured-playlists';
+
+  var getMusic = function getMusic() {
+    axios__WEBPACK_IMPORTED_MODULE_1___default()({
+      method: 'get',
+      url: url,
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }).then(function (result) {
+      return setData(result.data.playlists.items);
+    })["catch"](function (err) {
+      throw err;
+    });
+  };
+
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (data.length === 0) {
+      getMusic();
+    }
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "thumbnail"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.BigThumbnail, {
+    width: 10,
+    heigth: 10,
+    src: data.length > 0 ? data[0].images[0].url : null
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_4__.Header, {
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_2__.Jet,
+    size: 2.5
+  }, "Featured Playlists"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_4__.Paragraph, {
+    size: 1.1,
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_2__.Jet,
+    weight: 700
+  }, "Our featured playlists. Enjoy new music base on your mood", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), "Update every week"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "images"
+  }, data.map(function (playlist) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.Thumbnail, {
+      width: 7.2,
+      height: 7.2,
+      src: playlist.images[0].url,
+      key: playlist.id
+    });
+  })));
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (RecommendPlaylist);
 
 /***/ }),
 
@@ -2856,11 +3239,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "GlobalStyles": () => (/* binding */ GlobalStyles),
 /* harmony export */   "Banner": () => (/* binding */ Banner),
 /* harmony export */   "Container": () => (/* binding */ Container),
-/* harmony export */   "Button": () => (/* binding */ Button)
+/* harmony export */   "Button": () => (/* binding */ Button),
+/* harmony export */   "Thumbnail": () => (/* binding */ Thumbnail),
+/* harmony export */   "BigThumbnail": () => (/* binding */ BigThumbnail)
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../ui/colors.js */ "./ui/colors.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
@@ -2868,13 +3253,38 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var GlobalStyles = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  *,\n  *::before,\n  *::after {\n      margin: 0;\n      padding: 0;\n      box-sizing: inherit;\n  }\n  html {\n      box-sizing: border-box;\n      font-size: 62.5%;\n  }\n  body {\n      font-family: \"Noto Sans JP\";\n      background-color: ", ";\n      color: white;\n      font-weight: 400;\n      line-height: 1.6;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet);
 var Banner = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n\n"])));
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  max-width: 1400px;\n  width: 80%;\n  height: 100%;\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  grid-template-rows: 10rem 5rem repeat(2, 20rem) auto;\n  grid-gap: 1rem;\n  margin: auto;\n\n  #categoryDiv {\n    grid-column: span 6;\n    grid-row: 2 / 3;\n    display: flex;\n    justify-content: space-around;\n    align-items: flex-start;\n    border-radius: 1rem;\n  }\n\n  #musicContainer {\n    grid-column: 1 / 3;\n    grid-row: 3 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n  }\n\n  #recommend {\n    grid-column: 3 / 7;\n    grid-row: 3 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n  }\n\n  #info {\n    grid-column: span 6;\n    grid-row: 5 / 6;\n    background-color: ", ";\n    border-radius: 1rem;\n    height: 10rem;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink); // export const ButtonDiv = styled.div`
-//   display: flex;
-//   grid-column: span 6;
-//   grid-row: 2 / 3;
-// `;
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  max-width: 1400px;\n  min-width: 1000px;\n  width: 80%;\n  // height: 100%;\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  grid-template-rows: 10rem 5rem repeat(3, auto);\n  grid-gap: 1rem;\n  margin: auto;\n\n  #categoryDiv {\n    grid-column: span 6;\n    grid-row: 2 / 3;\n    display: flex;\n    justify-content: space-around;\n    align-items: flex-start;\n    border-radius: 1rem;\n  }\n\n  #musicContainer {\n    grid-column: 1 / 3;\n    grid-row: 3 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n    display: grid;\n    grid-template-rows: 2fr 1fr;\n    padding: 2rem;\n  }\n\n  #recommend {\n    grid-column: 3 / 7;\n    grid-row: 3 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n    padding: 2rem;\n    display: grid;\n    grid-template-rows: 1fr 3fr;\n    grid-gap: 1rem;\n\n    .description {\n      display: grid;\n      grid-row: 1 / 2;\n      grid-template-columns: 10rem 1fr;\n      grid-gap: 1rem;\n\n      .thumbnail {\n        grid-column: 1 / 2;\n        grid-row: 1 / 2;\n      }\n      .info {\n        grid-column: 2 / 5;\n        grid-row: 1 / 2;\n      }\n    }\n    .images {\n      grid-row: 2 / 3;\n      height: auto;\n    }\n  }\n\n  #info {\n    grid-column: 3 / 7;\n    grid-row: 5 / 6;\n    background-color: ", ";\n    border-radius: 1rem;\n    height: 25rem;\n    display: grid;\n    grid-gap: 1rem;\n    grid-template-columns: 14rem 1fr 1fr;\n    grid-template-rows: repeat(2, auto) repeat(2, 1fr);\n    padding: 2rem;\n\n    .cover {\n      grid-column: 1 / 2;\n      grid-row: 1 / 4;\n    }\n\n    .header {\n      grid-column: 2 / 3;\n      grid-row: 1 / 2;\n      height: auto;\n    }\n\n    .description {\n      grid-row: 2 / 3;\n      grid-column: 2 / 3;\n      align-items: start;\n    }\n\n    .tracks {\n      grid-column: 3 / 4;\n      grid-row: span 4;\n      overflow: hidden;\n      .track {\n        cursor: pointer;\n        : hover {\n          font-weight: 700;\n        }\n      }\n    }\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink);
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: 13rem;\n  height: 3rem;\n  color: white;\n  font-size: 1rem;\n  background-color: ", ";\n  border: none;\n  color: ", ";\n  font-weight:700;\n  border-radius: 1rem;\n  : focus{\n    outline: none;\n  }\n  : hover {\n    background-color: ", ";\n    color: white;\n    cursor: pointer;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Melon, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.CeladonBlue);
+var Thumbnail = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.img(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  width: ", "rem;\n  height: ", "rem;\n  border: none;\n  object-fit: cover;\n  cursor: pointer;\n  : hover {\n    transform: scale(1.1);\n  }\n"])), function (props) {
+  return props.width;
+}, function (props) {
+  return props.height;
+});
+var BigThumbnail = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.img(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  width: ", "rem;\n  height: ", "rem;\n  border: none;\n  object-fit: cover;\n"])), function (props) {
+  return props.width;
+}, function (props) {
+  return props.height;
+});
 
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: 12rem;\n  height: 3rem;\n  color: white;\n  font-size: 1.1rem;\n  background-color: ", ";\n  border: none;\n  color: ", ";\n  font-weight:700;\n  border-radius: 1rem;\n  : focus{\n    outline: none;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Melon, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet);
+/***/ }),
+
+/***/ "./client/src/components/IdContext.js":
+/*!********************************************!*\
+  !*** ./client/src/components/IdContext.js ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "IdContext": () => (/* binding */ IdContext),
+/* harmony export */   "Provider": () => (/* binding */ Provider)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+var IdContext = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createContext();
+var Provider = IdContext.Provider;
+
 
 /***/ }),
 
@@ -2917,15 +3327,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _styles_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../styles.js */ "./client/src/components/styles.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _ui_colors_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../ui/colors.js */ "./ui/colors.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 
 var Login = function Login(_ref) {
   var signIn = _ref.signIn;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Header, null, "Welcome to Discover !"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Paragraph, null, "Dicover new music everyday,", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), " powered by Spotify"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Header, {
+    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_2__.Melon,
+    size: 5
+  }, "Welcome to Discover !"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Paragraph, {
+    size: 1.5
+  }, "Dicover new music everyday,", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), " powered by Spotify"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("a", {
     href: "http://localhost:4000/login"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Button, null, "LOG IN WITH SPOTIFY")));
 };
@@ -2959,8 +3376,18 @@ function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(
 
 var GlobalStyles = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  *,\n  *::before,\n  *::after {\n      margin: 0;\n      padding: 0;\n      box-sizing: inherit;\n  }\n  html {\n      box-sizing: border-box;\n      font-size: 62.5%;\n  }\n  body {\n      font-family: \"Noto Sans JP\";\n      background-color: white;\n      color: white;\n      font-weight: 400;\n      line-height: 1.6;\n  }\n"])));
 var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  width: 50rem;\n  height: 30rem;\n  position: absolute;\n  padding: 4rem;\n  top: 0;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  margin: auto;\n  background-color: ", ";\n  border-radius: 2rem;\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet);
-var Header = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h1(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  font-size: 5rem;\n  line-height: 6rem;\n  font-weight: 900;\n  color: ", "\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Melon);
-var Paragraph = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.p(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  margin-top: 1rem;\n  font-size: 1.5rem;\n"])));
+var Header = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.h1(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  font-size: ", "rem;\n  font-weight: 900;\n  color: ", ";\n"])), function (props) {
+  return props.size;
+}, function (props) {
+  return props.color;
+});
+var Paragraph = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.p(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  font-size: ", "rem;\n  color: ", ";\n  font-weight: ", "\n"])), function (props) {
+  return props.size;
+}, function (props) {
+  return props.color;
+}, function (props) {
+  return props.weight;
+});
 var Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  width: 15rem;\n  color: black;\n  height: 3rem;\n  font-size: 1rem;\n  border-radius: 1.5rem;\n  position: absolute;\n  right: 4rem;\n  bottom: 4rem;\n  border: none;\n  background-color: ", ";\n  font-weight: 700;\n  : focus{\n    outline: none;\n  }\n  : hover {\n    color: white;\n    background-color: ", ";\n    cursor: pointer;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Melon, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink);
 
 /***/ }),
@@ -2973,7 +3400,8 @@ var Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_temp
 
 module.exports = {
   CLIENT_ID: '828ef35675a947c0b392b569784c7d93',
-  CLIENT_SECRET: 'd020b63bf2454491bc34e127e4ef25d3'
+  CLIENT_SECRET: 'd020b63bf2454491bc34e127e4ef25d3',
+  PLAYBACK_SDK: 'BQBMO0we9OSFTJ9KiCcLNVep_Q5phqlE56fLKa-5VniPR48IqbIli_v-jOolfOXChbhcOTHhIu4FC7I8GYgdjqNpj58Lgr934zOqENv7GhyUbBNR9bo5NfnxXbmBi3w0B9CAkKc_z7y_fwdwpdEbWJDL5SFStcwlvBQ'
 };
 
 /***/ }),
