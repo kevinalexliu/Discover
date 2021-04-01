@@ -5,10 +5,8 @@ import { Jet } from '../../../../ui/colors.js';
 
 const MusicContainer = ({track}) => {
   const audioRef = useRef();
-  const [source, setSource] = useState('')
 
   const updateSong = () => {
-    setSource(track.preview);
     if(audioRef.current){
         audioRef.current.pause();
         audioRef.current.load();
@@ -17,15 +15,17 @@ const MusicContainer = ({track}) => {
   }
 
   useEffect(() => {
-    updateSong();
-  })
+    if (track.preview) {
+      updateSong();
+    }
+  });
 
   return (
     <div id='musicContainer'>
         <BigThumbnail
           className='image'
-          width={28}
-          height={28}
+          width={25}
+          height={25}
           src={track.image}
         />
         <div className='track'>
@@ -44,7 +44,7 @@ const MusicContainer = ({track}) => {
         </div>
         <div className='audio'>
         <audio autoPlay ref={audioRef}>
-          <source src={source} type="audio/mpeg"/>
+          <source src={track.preview} type="audio/mpeg"/>
         </audio>
         </div>
     </div>

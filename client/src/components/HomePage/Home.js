@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { GlobalStyles, Container } from './styles.js';
 import CategoryDiv from './CategoryDiv.js';
 import MusicContainer from './MusicContainer.js';
-import Recommend from './Recommend.js';
+import Main from './Main.js';
 import Information from './Information.js';
 import axios from 'axios';
 import querystring from 'querystring';
@@ -65,7 +65,7 @@ const Home = () => {
         <Container>
           <CategoryDiv setCategory={setCategory} />
           {track ? <MusicContainer token={token} track={track} /> : null}
-          <Recommend token={token} category={category}/>
+          <Main token={token} category={category}/>
           {id.length> 0 ? <Information token={token} id={id} setTrack={setTrack} /> : null}
         </Container>
       </div>

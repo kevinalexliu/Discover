@@ -53,6 +53,7 @@ const Information = ({token, id, setTrack}) => {
   useEffect(() => {
     if (id.length > 1) {
       getAlbum();
+      setTrack(null);
     }
   }, [id])
 

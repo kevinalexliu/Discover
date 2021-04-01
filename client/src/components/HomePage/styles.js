@@ -54,7 +54,7 @@ export const Container = styled.div`
     background-color: ${SilverPink};
     border-radius: 1rem;
     display: grid;
-    grid-template-rows: 28rem auto;
+    grid-template-rows: 25rem auto;
     grid-gap: 1rem;
     padding: 2rem;
 
@@ -65,6 +65,7 @@ export const Container = styled.div`
 
     .track {
       grid-row: 2 / 3;
+      padding: 0 1.8rem;
     }
   }
 
@@ -75,7 +76,7 @@ export const Container = styled.div`
     border-radius: 1rem;
     padding: 2rem;
     display: grid;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 11rem auto;
     grid-gap: 1rem;
 
     .description {
