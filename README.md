@@ -15,7 +15,7 @@ Create config.env.js file
   
 Create config.env file
 
--CLIENT_ID={YOUR CLIENT ID KEY}<br/>
+- CLIENT_ID={YOUR CLIENT ID KEY}<br/>
   CLIENT_SECRET={YOUR CLIENT SECRET KEY}
  
  Run npm build<br/>
