@@ -30,13 +30,13 @@ const MusicContainer = ({track}) => {
         />
         <div className='track'>
           <Header
-            color={Jet}
+            color='white'
             size={1.5}
           >
             {track.track}
           </Header>
           <Header
-            color={Jet}
+            color='white'
             size={1.2}
           >
             {track.artist}

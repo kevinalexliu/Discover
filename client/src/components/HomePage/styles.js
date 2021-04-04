@@ -22,20 +22,23 @@ export const GlobalStyles = createGlobalStyle`
   }
 `;
 
-export const Banner = styled.div`
-  display: flex;
-
-`;
 
 export const Container = styled.div`
-  max-width: 1400px;
-  min-width: 1000px;
+  max-width: 1000px;
+  min-width: 800px;
   width: 80%;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 10rem 5rem repeat(2, auto);
   grid-gap: 1rem;
   margin: auto;
+
+  img.logo {
+    grid-column: span 3;
+    gridl-row: 1 / 2;
+    width: 25rem;
+    align-self: end;
+  }
 
   #categoryDiv {
     grid-column: span 6;
@@ -51,21 +54,22 @@ export const Container = styled.div`
   #musicContainer {
     grid-column: 1 / 3;
     grid-row: 3 / 4;
-    background-color: ${SilverPink};
     border-radius: 1rem;
     display: grid;
+    grid-template-columns: auto 25rem auto;
     grid-template-rows: 25rem auto;
     grid-gap: 1rem;
     padding: 2rem;
 
     .image {
+      grid-column: 2 / 3;
       grid-row: 1 / 2;
       justify-self: center;
     }
 
     .track {
+      grid-column: 2 / 3;
       grid-row: 2 / 3;
-      padding: 0 1.8rem;
     }
   }
 
@@ -168,6 +172,7 @@ export const Thumbnail = styled.img`
   border: none;
   object-fit: cover;
   cursor: pointer;
+  loading: lazy;
   : hover {
     transform: scale(1.1);
   }
@@ -177,4 +182,5 @@ export const BigThumbnail = styled.img`
   height: ${props=>props.height}rem;
   border: none;
   object-fit: cover;
+  loading: lazy;
 `;

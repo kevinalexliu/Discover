@@ -5,10 +5,11 @@ import { Thumbnail, BigThumbnail } from './styles.js';
 import { Header, Paragraph } from '../styles.js';
 import { IdContext } from '../IdContext.js';
 
+const random = Math.floor(Math.random() * 10 + 1);
+
 const Recommend = ({token}) => {
   const [data, setData] = useState([]);
   const { setId } = useContext(IdContext);
-  // const [params, setParams] = useState()
 
 
   const getUserTopPick = () => {
@@ -65,7 +66,7 @@ const Recommend = ({token}) => {
           <BigThumbnail
             width={10}
             heigth={10}
-            src={data.length > 0 ? data[0].album.images[0].url : null}
+            src={data.length > 0 ? data[random].album.images[0].url : null}
           />
         </div>
         <div className='info'>

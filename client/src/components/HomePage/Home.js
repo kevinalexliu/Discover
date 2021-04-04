@@ -8,6 +8,7 @@ import axios from 'axios';
 import querystring from 'querystring';
 import config from '/config.env.js';
 import { Provider } from '../IdContext.js';
+import logo from '../../../dist/Discover Logo.png';
 
 const redirect_uri = 'http://localhost:4000/home';
 var CODE;
@@ -63,6 +64,7 @@ const Home = () => {
       <div>
         <GlobalStyles />
         <Container>
+          <img className='logo' src={logo}/>
           <CategoryDiv setCategory={setCategory} />
           {track ? <MusicContainer token={token} track={track} /> : null}
           <Main token={token} category={category}/>

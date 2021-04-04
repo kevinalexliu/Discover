@@ -28,11 +28,6 @@ app.use(static)
 
 app.use('/login', authorizationRouter);
 
-// app.use('/home', (req, res) => {
-//   console.log('test')
-// })
-
-
 
 app.listen(PORT, () => {
   console.log(`Connected to port: ${PORT}`)

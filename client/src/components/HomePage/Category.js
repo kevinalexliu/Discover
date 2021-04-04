@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './styles.js';
 
-const Category = ({category, name, setCategory}) => {
+const Category = ({category, name, setCategory, setId}) => {
 
   const select = (e) => {
     e.preventDefault();

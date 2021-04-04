@@ -2602,7 +2602,8 @@ __webpack_require__.r(__webpack_exports__);
 var Category = function Category(_ref) {
   var category = _ref.category,
       name = _ref.name,
-      setCategory = _ref.setCategory;
+      setCategory = _ref.setCategory,
+      setId = _ref.setId;
 
   var select = function select(e) {
     e.preventDefault();
@@ -2693,6 +2694,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _config_env_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../../config.env.js */ "./config.env.js");
 /* harmony import */ var _config_env_js__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(_config_env_js__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var _IdContext_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../IdContext.js */ "./client/src/components/IdContext.js");
+/* harmony import */ var _dist_Discover_Logo_png__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../../dist/Discover Logo.png */ "./client/dist/Discover Logo.png");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2704,6 +2706,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2788,7 +2791,10 @@ var Home = function Home() {
     value: {
       setId: setId
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.GlobalStyles, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CategoryDiv_js__WEBPACK_IMPORTED_MODULE_2__.default, {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.GlobalStyles, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_1__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+    className: "logo",
+    src: _dist_Discover_Logo_png__WEBPACK_IMPORTED_MODULE_10__.default
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_CategoryDiv_js__WEBPACK_IMPORTED_MODULE_2__.default, {
     setCategory: setCategory
   }), track ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_MusicContainer_js__WEBPACK_IMPORTED_MODULE_3__.default, {
     token: token,
@@ -3047,10 +3053,10 @@ var MusicContainer = function MusicContainer(_ref) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "track"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_2__.Header, {
-    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_3__.Jet,
+    color: "white",
     size: 1.5
   }, track.track), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_2__.Header, {
-    color: _ui_colors_js__WEBPACK_IMPORTED_MODULE_3__.Jet,
+    color: "white",
     size: 1.2
   }, track.artist)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "audio"
@@ -3103,6 +3109,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var random = Math.floor(Math.random() * 10 + 1);
 
 var NewRelease = function NewRelease(_ref) {
   var token = _ref.token;
@@ -3143,7 +3150,7 @@ var NewRelease = function NewRelease(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.BigThumbnail, {
     width: 10,
     heigth: 10,
-    src: data.length > 0 ? data[0].images[0].url : null
+    src: data.length > 0 ? data[random].images[0].url : null
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_4__.Header, {
@@ -3208,6 +3215,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+var random = Math.floor(Math.random() * 10 + 1);
 
 var Recommend = function Recommend(_ref) {
   var token = _ref.token;
@@ -3218,8 +3226,7 @@ var Recommend = function Recommend(_ref) {
       setData = _useState2[1];
 
   var _useContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(_IdContext_js__WEBPACK_IMPORTED_MODULE_5__.IdContext),
-      setId = _useContext.setId; // const [params, setParams] = useState()
-
+      setId = _useContext.setId;
 
   var getUserTopPick = function getUserTopPick() {
     var url = 'https://api.spotify.com/v1/me/top/artists';
@@ -3279,7 +3286,7 @@ var Recommend = function Recommend(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_3__.BigThumbnail, {
     width: 10,
     heigth: 10,
-    src: data.length > 0 ? data[0].album.images[0].url : null
+    src: data.length > 0 ? data[random].album.images[0].url : null
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
     className: "info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_styles_js__WEBPACK_IMPORTED_MODULE_4__.Header, {
@@ -3415,7 +3422,6 @@ var RecommendPlaylist = function RecommendPlaylist(_ref) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "GlobalStyles": () => (/* binding */ GlobalStyles),
-/* harmony export */   "Banner": () => (/* binding */ Banner),
 /* harmony export */   "Container": () => (/* binding */ Container),
 /* harmony export */   "Button": () => (/* binding */ Button),
 /* harmony export */   "Thumbnail": () => (/* binding */ Thumbnail),
@@ -3423,22 +3429,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
 /* harmony import */ var _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../ui/colors.js */ "./ui/colors.js");
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5;
 
 function _taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.slice(0); } return Object.freeze(Object.defineProperties(strings, { raw: { value: Object.freeze(raw) } })); }
 
 
 
 var GlobalStyles = (0,styled_components__WEBPACK_IMPORTED_MODULE_1__.createGlobalStyle)(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n  *,\n  *::before,\n  *::after {\n      margin: 0;\n      padding: 0;\n      box-sizing: inherit;\n  }\n  html {\n      box-sizing: border-box;\n      font-size: 62.5%;\n  }\n  body {\n      font-family: \"Noto Sans JP\";\n      background-color: ", ";\n      color: white;\n      font-weight: 400;\n      line-height: 1.6;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet);
-var Banner = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  display: flex;\n\n"])));
-var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  max-width: 1400px;\n  min-width: 1000px;\n  width: 80%;\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  grid-template-rows: 10rem 5rem repeat(2, auto);\n  grid-gap: 1rem;\n  margin: auto;\n\n  #categoryDiv {\n    grid-column: span 6;\n    grid-row: 2 / 3;\n    display: grid;\n    grid-template-columns: repeat(6, 1fr);\n    grid-gap:1rem;\n    align-items: center;\n    justify-items: center;\n    border-radius: 1rem;\n  }\n\n  #musicContainer {\n    grid-column: 1 / 3;\n    grid-row: 3 / 4;\n    background-color: ", ";\n    border-radius: 1rem;\n    display: grid;\n    grid-template-rows: 25rem auto;\n    grid-gap: 1rem;\n    padding: 2rem;\n\n    .image {\n      grid-row: 1 / 2;\n      justify-self: center;\n    }\n\n    .track {\n      grid-row: 2 / 3;\n      padding: 0 1.8rem;\n    }\n  }\n\n  #recommend {\n    grid-column: 3 / 7;\n    grid-row: 3 / 4;\n    background-color: ", ";\n    border-radius: 1rem;\n    padding: 2rem;\n    display: grid;\n    grid-template-rows: 11rem auto;\n    grid-gap: 1rem;\n\n    .description {\n      display: grid;\n      grid-row: 1 / 2;\n      grid-template-columns: 10rem 1fr;\n      grid-gap: 1rem;\n\n      .thumbnail {\n        grid-column: 1 / 2;\n        grid-row: 1 / 2;\n      }\n      .info {\n        grid-column: 2 / 5;\n        grid-row: 1 / 2;\n      }\n    }\n    .images {\n      grid-row: 2 / 3;\n      height: auto;\n    }\n  }\n\n  #info {\n    grid-column: 3 / 7;\n    grid-row: 4 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n    height: 25rem;\n    display: grid;\n    grid-gap: 1rem;\n    grid-template-columns: 14rem 1fr 1fr;\n    grid-template-rows: auto repeat(2, 1fr);\n    padding: 2rem;\n\n    .cover {\n      grid-column: 1 / 2;\n      grid-row: 1 / 3;\n    }\n\n    .header {\n      grid-column: 2 / 3;\n      grid-row: 1 / 2;\n    }\n\n    .description {\n      grid-row: 2 / 3;\n      grid-column: 2 / 3;\n    }\n\n    .tracks {\n      grid-column: 3 / 4;\n      grid-row: span 3;\n      overflow: hidden;\n      .track {\n        cursor: pointer;\n        : hover {\n          font-weight: 700;\n        }\n      }\n    }\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink);
-var Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: 13rem;\n  height: 3rem;\n  color: white;\n  font-size: 1rem;\n  background-color: ", ";\n  border: none;\n  color: ", ";\n  font-weight:700;\n  border-radius: 1rem;\n  : focus{\n    outline: none;\n  }\n  : hover {\n    background-color: ", ";\n    color: white;\n    cursor: pointer;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Melon, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.CeladonBlue);
-var Thumbnail = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.img(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  width: ", "rem;\n  height: ", "rem;\n  border: none;\n  object-fit: cover;\n  cursor: pointer;\n  : hover {\n    transform: scale(1.1);\n  }\n"])), function (props) {
+var Container = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n  max-width: 1000px;\n  min-width: 800px;\n  width: 80%;\n  display: grid;\n  grid-template-columns: repeat(6, 1fr);\n  grid-template-rows: 10rem 5rem repeat(2, auto);\n  grid-gap: 1rem;\n  margin: auto;\n\n  img.logo {\n    grid-column: span 3;\n    gridl-row: 1 / 2;\n    width: 25rem;\n    align-self: end;\n  }\n\n  #categoryDiv {\n    grid-column: span 6;\n    grid-row: 2 / 3;\n    display: grid;\n    grid-template-columns: repeat(6, 1fr);\n    grid-gap:1rem;\n    align-items: center;\n    justify-items: center;\n    border-radius: 1rem;\n  }\n\n  #musicContainer {\n    grid-column: 1 / 3;\n    grid-row: 3 / 4;\n    border-radius: 1rem;\n    display: grid;\n    grid-template-columns: auto 25rem auto;\n    grid-template-rows: 25rem auto;\n    grid-gap: 1rem;\n    padding: 2rem;\n\n    .image {\n      grid-column: 2 / 3;\n      grid-row: 1 / 2;\n      justify-self: center;\n    }\n\n    .track {\n      grid-column: 2 / 3;\n      grid-row: 2 / 3;\n    }\n  }\n\n  #recommend {\n    grid-column: 3 / 7;\n    grid-row: 3 / 4;\n    background-color: ", ";\n    border-radius: 1rem;\n    padding: 2rem;\n    display: grid;\n    grid-template-rows: 11rem auto;\n    grid-gap: 1rem;\n\n    .description {\n      display: grid;\n      grid-row: 1 / 2;\n      grid-template-columns: 10rem 1fr;\n      grid-gap: 1rem;\n\n      .thumbnail {\n        grid-column: 1 / 2;\n        grid-row: 1 / 2;\n      }\n      .info {\n        grid-column: 2 / 5;\n        grid-row: 1 / 2;\n      }\n    }\n    .images {\n      grid-row: 2 / 3;\n      height: auto;\n    }\n  }\n\n  #info {\n    grid-column: 3 / 7;\n    grid-row: 4 / 5;\n    background-color: ", ";\n    border-radius: 1rem;\n    height: 25rem;\n    display: grid;\n    grid-gap: 1rem;\n    grid-template-columns: 14rem 1fr 1fr;\n    grid-template-rows: auto repeat(2, 1fr);\n    padding: 2rem;\n\n    .cover {\n      grid-column: 1 / 2;\n      grid-row: 1 / 3;\n    }\n\n    .header {\n      grid-column: 2 / 3;\n      grid-row: 1 / 2;\n    }\n\n    .description {\n      grid-row: 2 / 3;\n      grid-column: 2 / 3;\n    }\n\n    .tracks {\n      grid-column: 3 / 4;\n      grid-row: span 3;\n      overflow: hidden;\n      .track {\n        cursor: pointer;\n        : hover {\n          font-weight: 700;\n        }\n      }\n    }\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.SilverPink);
+var Button = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.button(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n  width: 13rem;\n  height: 3rem;\n  color: white;\n  font-size: 1rem;\n  background-color: ", ";\n  border: none;\n  color: ", ";\n  font-weight:700;\n  border-radius: 1rem;\n  : focus{\n    outline: none;\n  }\n  : hover {\n    background-color: ", ";\n    color: white;\n    cursor: pointer;\n  }\n"])), _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Melon, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.Jet, _ui_colors_js__WEBPACK_IMPORTED_MODULE_0__.CeladonBlue);
+var Thumbnail = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.img(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n  width: ", "rem;\n  height: ", "rem;\n  border: none;\n  object-fit: cover;\n  cursor: pointer;\n  loading: lazy;\n  : hover {\n    transform: scale(1.1);\n  }\n"])), function (props) {
   return props.width;
 }, function (props) {
   return props.height;
 });
-var BigThumbnail = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.img(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n  width: ", "rem;\n  height: ", "rem;\n  border: none;\n  object-fit: cover;\n"])), function (props) {
+var BigThumbnail = styled_components__WEBPACK_IMPORTED_MODULE_1__.default.img(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n  width: ", "rem;\n  height: ", "rem;\n  border: none;\n  object-fit: cover;\n  loading: lazy;\n"])), function (props) {
   return props.width;
 }, function (props) {
   return props.height;
@@ -3610,6 +3615,21 @@ var PrussianBlue = '#1D3557';
 var Jet = '#333232';
 var Melon = '#F7B2AD';
 var SilverPink = '#CEB7B3';
+
+/***/ }),
+
+/***/ "./client/dist/Discover Logo.png":
+/*!***************************************!*\
+  !*** ./client/dist/Discover Logo.png ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__webpack_require__.p + "561e3018bf84c293087b62507711bd58.png");
 
 /***/ }),
 
@@ -34084,6 +34104,18 @@ function v(){return(v=Object.assign||function(e){for(var t=1;t<arguments.length;
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/global */
+/******/ 	(() => {
+/******/ 		__webpack_require__.g = (function() {
+/******/ 			if (typeof globalThis === 'object') return globalThis;
+/******/ 			try {
+/******/ 				return this || new Function('return this')();
+/******/ 			} catch (e) {
+/******/ 				if (typeof window === 'object') return window;
+/******/ 			}
+/******/ 		})();
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
@@ -34098,6 +34130,26 @@ function v(){return(v=Object.assign||function(e){for(var t=1;t<arguments.length;
 /******/ 			}
 /******/ 			Object.defineProperty(exports, '__esModule', { value: true });
 /******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/publicPath */
+/******/ 	(() => {
+/******/ 		var scriptUrl;
+/******/ 		if (__webpack_require__.g.importScripts) scriptUrl = __webpack_require__.g.location + "";
+/******/ 		var document = __webpack_require__.g.document;
+/******/ 		if (!scriptUrl && document) {
+/******/ 			if (document.currentScript)
+/******/ 				scriptUrl = document.currentScript.src
+/******/ 			if (!scriptUrl) {
+/******/ 				var scripts = document.getElementsByTagName("script");
+/******/ 				if(scripts.length) scriptUrl = scripts[scripts.length - 1].src
+/******/ 			}
+/******/ 		}
+/******/ 		// When supporting browsers where an automatic publicPath is not supported you must specify an output.publicPath manually via configuration
+/******/ 		// or pass an empty string ("") and set the __webpack_public_path__ variable from your code to use your own logic.
+/******/ 		if (!scriptUrl) throw new Error("Automatic publicPath is not supported in this browser");
+/******/ 		scriptUrl = scriptUrl.replace(/#.*$/, "").replace(/\?.*$/, "").replace(/\/[^\/]+$/, "/");
+/******/ 		__webpack_require__.p = scriptUrl;
 /******/ 	})();
 /******/ 	
 /************************************************************************/
