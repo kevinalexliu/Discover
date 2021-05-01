@@ -30,12 +30,6 @@ CLIENT_SECRET: {YOUR CLIENT SECRET KEY}
 
 PLAYBACK_SDK: {YOUR PLAYBACK SDK KEY}
 
-Make a copy of config.example.env and rename to config.env
-
-CLIENT_ID: {YOUR CLIENT ID KEY}
-
-CLIENT_SECRET: {YOUR CLIENT SECRET KEY}
-
 Use the package manager [npm](https://www.npmjs.com/get-npm) to install Patagucci.
 
 ```bash

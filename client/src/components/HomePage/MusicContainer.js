@@ -18,7 +18,7 @@ const MusicContainer = ({track}) => {
     if (track.preview) {
       updateSong();
     }
-  });
+  }, [track]);
 
   return (
     <div id='musicContainer'>
